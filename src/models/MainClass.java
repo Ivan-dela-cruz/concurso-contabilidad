@@ -6,6 +6,7 @@
 package models;
 
 import conexion.Conexion;
+import view.DashBoard;
 
 /**
  *
@@ -20,6 +21,9 @@ public class MainClass {
         
         Conexion con = new Conexion();
         con.conectar();
+        
+        DashBoard dashBoard = new DashBoard();
+        dashBoard.show();
     }
     
 }

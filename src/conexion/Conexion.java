@@ -5,7 +5,13 @@ import java.sql.*;
 public class Conexion {
 
     public Connection sql;
-    public static String connectString = "jdbc:mysql://localhost:3306/sistema_encuestasv1"; // llamamos nuestra bd
+    /*
+     public static String connectString = "jdbc:mysql://remotemysql.com:3306/0DRQrUiprw"; // llamamos nuestra bd
+    public static String user = "0DRQrUiprw"; // usuario mysql
+    public static String password = "NS5BOUo2U2"; // no tiene password nuestra bd.
+    */
+    
+    public static String connectString = "jdbc:mysql://localhost:3306/sistema_encuestas"; // llamamos nuestra bd
     public static String user = "root"; // usuario mysql
     public static String password = ""; // no tiene password nuestra bd.
     public static Statement guardar;
