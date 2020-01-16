@@ -42,6 +42,15 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         jMenuBar1.setVisible(true);
+        
+        /*
+        inicializacion main
+         Conexion con = new Conexion();
+        con.conectar();
+        
+        DashBoard dashBoard = new DashBoard();
+        dashBoard.setVisible(true);
+        */
     }
 
     /* public void init() {
