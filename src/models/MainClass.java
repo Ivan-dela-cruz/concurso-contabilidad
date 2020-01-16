@@ -23,7 +23,7 @@ public class MainClass {
         con.conectar();
         
         DashBoard dashBoard = new DashBoard();
-        dashBoard.show();
+        dashBoard.setVisible(true);
     }
     
 }

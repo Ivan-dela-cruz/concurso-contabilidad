@@ -12,6 +12,7 @@ package view;
 
 import com.sun.javafx.geom.transform.BaseTransform;
 import java.awt.Image;
+import static java.lang.Thread.sleep;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -32,24 +33,24 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
     public static String hora, minutos, segundos, ampm;
     Calendar calendario;
     Thread h1;
-    
+
     public DashBoard() {
         initComponents();
-        
+
         h1 = new Thread(this);
         h1.start();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
+        jMenuBar1.setVisible(true);
     }
-    
-   /* public void init() {
+
+    /* public void init() {
         ImageIcon imagen1 = new ImageIcon(getClass().getResource("/icons/costos.png"));
         Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(lb_auditoria.getWidth(), lb_auditoria.getHeight(), Image.SCALE_DEFAULT));
         lb_auditoria.setIcon(fondo1);
         this.repaint();
     }
-    */
-
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +70,7 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         texto_costos = new javax.swing.JLabel();
         lb_tributacion = new javax.swing.JLabel();
         texto_tributacion = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblusu = new javax.swing.JLabel();
@@ -77,20 +79,17 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menunuevouser = new javax.swing.JMenuItem();
-        cerrarsecion = new javax.swing.JMenuItem();
         salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         estacionamientos = new javax.swing.JMenuItem();
-        clientes = new javax.swing.JMenuItem();
-        clientes1 = new javax.swing.JMenuItem();
+        registro_preguntas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         consultasClientes = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         reportecliente = new javax.swing.JMenu();
         menuClientesSi = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Ventas");
+        setTitle("OLIMPIADAS CONTABLES UTC");
 
         jdpescritorio.setBackground(new java.awt.Color(25, 153, 153));
 
@@ -98,7 +97,7 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         reloj2.setForeground(new java.awt.Color(255, 255, 255));
         reloj2.setText("jLabel11");
         jdpescritorio.add(reloj2);
-        reloj2.setBounds(480, 50, 290, 80);
+        reloj2.setBounds(490, 470, 290, 80);
 
         lb_auditoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_auditoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/auditoria_1.png"))); // NOI18N
@@ -111,12 +110,12 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         jdpescritorio.add(lb_auditoria);
         lb_auditoria.setBounds(250, 220, 130, 130);
 
-        text_auditoria.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        text_auditoria.setFont(new java.awt.Font("Arial Narrow", 1, 22)); // NOI18N
         text_auditoria.setForeground(new java.awt.Color(255, 255, 255));
         text_auditoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_auditoria.setText("Auditoría");
         jdpescritorio.add(text_auditoria);
-        text_auditoria.setBounds(230, 350, 170, 30);
+        text_auditoria.setBounds(230, 360, 170, 30);
 
         lb_contabilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_contabilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/contabilidad.png"))); // NOI18N
@@ -129,12 +128,12 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         jdpescritorio.add(lb_contabilidad);
         lb_contabilidad.setBounds(450, 220, 130, 130);
 
-        texto_contabilidad.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        texto_contabilidad.setFont(new java.awt.Font("Arial Narrow", 1, 22)); // NOI18N
         texto_contabilidad.setForeground(new java.awt.Color(255, 255, 255));
         texto_contabilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         texto_contabilidad.setText("Contabilidad");
         jdpescritorio.add(texto_contabilidad);
-        texto_contabilidad.setBounds(450, 350, 130, 30);
+        texto_contabilidad.setBounds(450, 360, 130, 30);
 
         lb_costos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_costos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/costos.png"))); // NOI18N
@@ -147,12 +146,12 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         jdpescritorio.add(lb_costos);
         lb_costos.setBounds(650, 220, 130, 130);
 
-        texto_costos.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        texto_costos.setFont(new java.awt.Font("Arial Narrow", 1, 22)); // NOI18N
         texto_costos.setForeground(new java.awt.Color(255, 255, 255));
         texto_costos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         texto_costos.setText("Costos");
         jdpescritorio.add(texto_costos);
-        texto_costos.setBounds(650, 350, 130, 30);
+        texto_costos.setBounds(650, 360, 130, 30);
 
         lb_tributacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_tributacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tributacion.png"))); // NOI18N
@@ -165,12 +164,18 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         jdpescritorio.add(lb_tributacion);
         lb_tributacion.setBounds(850, 220, 130, 130);
 
-        texto_tributacion.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        texto_tributacion.setFont(new java.awt.Font("Arial Narrow", 1, 22)); // NOI18N
         texto_tributacion.setForeground(new java.awt.Color(255, 255, 255));
         texto_tributacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         texto_tributacion.setText("Tributación");
         jdpescritorio.add(texto_tributacion);
-        texto_tributacion.setBounds(850, 350, 130, 30);
+        texto_tributacion.setBounds(850, 360, 130, 30);
+
+        jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 60)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Olimpiadas Contables \"UTC\" 2020");
+        jdpescritorio.add(jLabel2);
+        jLabel2.setBounds(250, 50, 980, 80);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/degradados-wallpapers-7.jpg"))); // NOI18N
         jdpescritorio.add(jLabel10);
@@ -197,14 +202,6 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         });
         jMenu1.add(menunuevouser);
 
-        cerrarsecion.setText("Cerrar Sesion");
-        cerrarsecion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarsecionActionPerformed(evt);
-            }
-        });
-        jMenu1.add(cerrarsecion);
-
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +219,7 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        estacionamientos.setText("Nueva encuesta");
+        estacionamientos.setText("Nuevo cuestionario");
         estacionamientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estacionamientosActionPerformed(evt);
@@ -230,21 +227,13 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
         });
         jMenu2.add(estacionamientos);
 
-        clientes.setText("Registro de preguntas");
-        clientes.addActionListener(new java.awt.event.ActionListener() {
+        registro_preguntas.setText("Registro de preguntas");
+        registro_preguntas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientesActionPerformed(evt);
+                registro_preguntasActionPerformed(evt);
             }
         });
-        jMenu2.add(clientes);
-
-        clientes1.setText("Registro de opciones");
-        clientes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientes1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(clientes1);
+        jMenu2.add(registro_preguntas);
 
         jMenuBar1.add(jMenu2);
 
@@ -262,9 +251,6 @@ public class DashBoard extends javax.swing.JFrame implements Runnable {
             }
         });
         jMenu4.add(consultasClientes);
-
-        jMenuItem1.setText("Encuestas");
-        jMenu4.add(jMenuItem1);
 
         jMenuBar1.add(jMenu4);
 
@@ -319,14 +305,6 @@ private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
 }//GEN-LAST:event_jMenu1ActionPerformed
 
-private void cerrarsecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarsecionActionPerformed
-// TODO add your handling code here:
-    LOGGIN principal = new LOGGIN();
-    principal.setVisible(true);
-    principal.pack();
-    this.setVisible(false);
-}//GEN-LAST:event_cerrarsecionActionPerformed
-
 private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
 // TODO add your handling code here:
     this.dispose();
@@ -334,10 +312,10 @@ private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 
 private void estacionamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estacionamientosActionPerformed
 // TODO add your handling code here:
-    /*Estacionamiento ip = new Estacionamiento();
+    RegistroEncuesta ip = new RegistroEncuesta();
 
     jdpescritorio.add(ip);
-    ip.show();*/
+    ip.show();
 }//GEN-LAST:event_estacionamientosActionPerformed
 
 private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
@@ -346,8 +324,11 @@ private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_jMenu2ActionPerformed
 
 private void menuClientesSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuClientesSiActionPerformed
-// TODO add your handling code here:
 
+ReporteCalificaciones ip = new ReporteCalificaciones();
+
+    jdpescritorio.add(ip);
+    ip.show();
 
 }//GEN-LAST:event_menuClientesSiActionPerformed
 
@@ -365,32 +346,48 @@ private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_jMenu4ActionPerformed
 
 private void menunuevouserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menunuevouserActionPerformed
-
+    RegistroPersona ip = new RegistroPersona();
+        jdpescritorio.add(ip);
+        
+        ip.show();
 }//GEN-LAST:event_menunuevouserActionPerformed
 
-    private void clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesActionPerformed
-        
-    }//GEN-LAST:event_clientesActionPerformed
+    private void registro_preguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registro_preguntasActionPerformed
+        RegistroPreguntas ip = new RegistroPreguntas();
+        jdpescritorio.add(ip);
+        ip.show();
+
+    }//GEN-LAST:event_registro_preguntasActionPerformed
 
     private void lb_auditoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_auditoriaMouseClicked
+        this.lb_auditoria.setEnabled(false);
+        ChooseLevel ip = new ChooseLevel("AUDITORIA");
+        jdpescritorio.add(ip);
+        ip.show();
+        this.lb_auditoria.setEnabled(true);
         
     }//GEN-LAST:event_lb_auditoriaMouseClicked
 
     private void lb_costosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_costosMouseClicked
-        
+        ChooseLevel ip = new ChooseLevel("COSTOS");
+
+        jdpescritorio.add(ip);
+        ip.show();
+
+
     }//GEN-LAST:event_lb_costosMouseClicked
 
     private void lb_contabilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_contabilidadMouseClicked
-        
+        ChooseLevel ip = new ChooseLevel("CONTABILIDAD");
+        jdpescritorio.add(ip);
+        ip.show();
     }//GEN-LAST:event_lb_contabilidadMouseClicked
 
     private void lb_tributacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_tributacionMouseClicked
-        
+        ChooseLevel ip = new ChooseLevel("TRIBUTACION");
+        jdpescritorio.add(ip);
+        ip.show();
     }//GEN-LAST:event_lb_tributacionMouseClicked
-
-    private void clientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientes1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clientes1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,26 +425,23 @@ private void menunuevouserActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new DashBoard().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem cerrarsecion;
-    private javax.swing.JMenuItem clientes;
-    private javax.swing.JMenuItem clientes1;
     private javax.swing.JMenuItem consultasClientes;
     private javax.swing.JMenuItem estacionamientos;
     private javax.swing.JLabel ho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     public static javax.swing.JDesktopPane jdpescritorio;
     private javax.swing.JLabel lb_auditoria;
     private javax.swing.JLabel lb_contabilidad;
@@ -456,6 +450,7 @@ private void menunuevouserActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     public static javax.swing.JLabel lblusu;
     private javax.swing.JMenuItem menuClientesSi;
     private javax.swing.JMenuItem menunuevouser;
+    private javax.swing.JMenuItem registro_preguntas;
     public static javax.swing.JLabel reloj;
     private javax.swing.JLabel reloj2;
     private javax.swing.JMenu reportecliente;
@@ -479,7 +474,7 @@ private void menunuevouserActionPerformed(java.awt.event.ActionEvent evt) {//GEN
             }
         }
     }
-    
+
     private void calcula() {
         Calendar calendario = new GregorianCalendar();
         java.util.Date fechahoraActual = new java.util.Date();

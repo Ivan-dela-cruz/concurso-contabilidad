@@ -1,6 +1,7 @@
 package conexion;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Conexion {
 
@@ -32,6 +33,28 @@ public class Conexion {
             return c;
         }
     }
+    
+    
+    
+    ////////////llenar combo box /////////////////////
+    
+     public ArrayList<String> llenar_combo(String tabla, String columna) {
+        ArrayList<String> lista = new ArrayList<String>();
+        String q = "SELECT * FROM " + tabla;
+        try {
+             guardar = sql.createStatement();
+            ResultSet resultado = guardar.executeQuery(q);
+             while (resultado.next()) {
+                lista.add(resultado.getString(columna));
+            }
+            System.out.println("Carga Correcta");
+        } catch (Exception e) {
+            System.out.println("No Correcto"+e);
+        }
+        
+        return lista;
+    }
+    
     ///////////////Insertar///////////////////////////
 
     public void insertar(String sentencia) {
@@ -80,4 +103,25 @@ public class Conexion {
             System.out.println(e);
         }
     }
+    
+    ////////////////////buscar////////////////////////////////
+
+    public int buscarId(String sentencia) {
+        int id = 0;
+        try {
+            
+            guardar = sql.createStatement();
+            ResultSet rs = guardar.executeQuery(sentencia);
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+            
+           return id;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return id;
+        }
+    }
+    
 }
